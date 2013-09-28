@@ -40,7 +40,7 @@ import alshain01.Flags.Registrar;
 import alshain01.Flags.Director;
 
 /**
- * Flags - Damage
+ * Flags - Creature Spawn
  * Module that adds creature spawn flags to the plugin Flags.
  * 
  * @author Alshain01
@@ -126,8 +126,11 @@ public class FlagsCreatureSpawn extends JavaPlugin {
 					&& e.getSpawnReason() == SpawnReason.SLIME_SPLIT) {
 				flag = flags.getFlag("SlimeSplit");
 			} else if(Flags.instance.checkAPI("1.4.5")
-					&& e.getSpawnReason() == SpawnReason.BUILD_WITHER ) {
+					&& e.getSpawnReason() == SpawnReason.BUILD_WITHER) {
 				flag = flags.getFlag("BuildWither");
+			} else if(Flags.instance.checkAPI("1.6.2")
+					&& e.getSpawnReason() == SpawnReason.REINFORCEMENTS)
+				flag = flags.getFlag("SpawnReinforcements")
 			} else {
 				flag = flags.getFlag("SpawnOther");
 			}

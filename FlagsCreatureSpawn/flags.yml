@@ -31,3 +31,6 @@ Flag:
   SlimeSplit:
     Description: Toggles ability for slime to split.
     MinimumAPI: 1.2.5
+  SpawnReinforcements:
+    Description: Toggles ability for mobs to call for reinforcements.
+    MinimumAPI: 1.6.2
