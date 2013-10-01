@@ -129,8 +129,8 @@ public class FlagsCreatureSpawn extends JavaPlugin {
 					&& e.getSpawnReason() == SpawnReason.BUILD_WITHER) {
 				flag = flags.getFlag("BuildWither");
 			} else if(Flags.instance.checkAPI("1.6.2")
-					&& e.getSpawnReason() == SpawnReason.REINFORCEMENTS)
-				flag = flags.getFlag("SpawnReinforcements")
+					&& e.getSpawnReason() == SpawnReason.REINFORCEMENTS) {
+				flag = flags.getFlag("SpawnReinforcements");
 			} else {
 				flag = flags.getFlag("SpawnOther");
 			}
