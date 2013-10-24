@@ -62,7 +62,7 @@ public class FlagsCreatureSpawn extends JavaPlugin {
 		ModuleYML dataFile = new ModuleYML(this, "flags.yml");
 		
 		// Register with Flags
-		Registrar flags = Flags.instance.getRegistrar();
+		Registrar flags = Flags.getRegistrar();
 		for(String f : dataFile.getModuleData().getConfigurationSection("Flag").getKeys(false)) {
 			ConfigurationSection data = dataFile.getModuleData().getConfigurationSection("Flag." + f);
 			
@@ -70,7 +70,7 @@ public class FlagsCreatureSpawn extends JavaPlugin {
 			// It would just muck up the help menu.
 			// Null value is assumed to support all versions.
 			String api = data.getString("MinimumAPI");  
-			if(api != null && !Flags.instance.checkAPI(api)) { continue; }
+			if(api != null && !Flags.checkAPI(api)) { continue; }
 			
 			// The description that appears when using help commands.
 			String desc = data.getString("Description");
@@ -92,7 +92,7 @@ public class FlagsCreatureSpawn extends JavaPlugin {
 		@EventHandler(ignoreCancelled = true)
 		private void onCreatureSpawn(CreatureSpawnEvent e){
 			Flag flag = null;
-			Registrar flags = Flags.instance.getRegistrar();
+			Registrar flags = Flags.getRegistrar();
 			
 			if (e.getSpawnReason() == SpawnReason.NATURAL) {
 				flag = flags.getFlag("SpawnMob");
@@ -122,13 +122,13 @@ public class FlagsCreatureSpawn extends JavaPlugin {
 				if (e.getEntityType() == EntityType.VILLAGER) {
 					flag = flags.getFlag("BreedVillager");
 				}
-			} else if (Flags.instance.checkAPI("1.2.5")
+			} else if (Flags.checkAPI("1.2.5")
 					&& e.getSpawnReason() == SpawnReason.SLIME_SPLIT) {
 				flag = flags.getFlag("SlimeSplit");
-			} else if(Flags.instance.checkAPI("1.4.5")
+			} else if(Flags.checkAPI("1.4.5")
 					&& e.getSpawnReason() == SpawnReason.BUILD_WITHER) {
 				flag = flags.getFlag("BuildWither");
-			} else if(Flags.instance.checkAPI("1.6.2")
+			} else if(Flags.checkAPI("1.6.2")
 					&& e.getSpawnReason() == SpawnReason.REINFORCEMENTS) {
 				flag = flags.getFlag("SpawnReinforcements");
 			} else {
