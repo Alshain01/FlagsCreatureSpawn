@@ -111,7 +111,6 @@ public class FlagsCreatureSpawn extends JavaPlugin {
 				} else {
 					flag = flags.getFlag("SpawnOther");
 				}
-				break;
 			}
 
 			// Always guard this, even when it really can't happen.
