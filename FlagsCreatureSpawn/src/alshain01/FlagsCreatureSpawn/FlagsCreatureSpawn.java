@@ -34,11 +34,11 @@ import org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import alshain01.Flags.Director;
 import alshain01.Flags.Flag;
 import alshain01.Flags.Flags;
 import alshain01.Flags.ModuleYML;
 import alshain01.Flags.Registrar;
+import alshain01.Flags.area.Area;
 
 /**
  * Flags - Creature Spawn Module that adds creature spawn flags to the plugin Flags.
@@ -116,7 +116,7 @@ public class FlagsCreatureSpawn extends JavaPlugin {
 			// Always guard this, even when it really can't happen.
 			// (In this case, BREEDING can cause null)
 			if (flag != null) {
-				e.setCancelled(!Director.getAreaAt(e.getLocation()).getValue(
+				e.setCancelled(!Area.getAt(e.getLocation()).getValue(
 						flag, false));
 			}
 		}
