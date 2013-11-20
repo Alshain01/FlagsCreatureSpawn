@@ -24,6 +24,12 @@
 
 package alshain01.FlagsCreatureSpawn;
 
+import io.github.alshain01.Flags.Flag;
+import io.github.alshain01.Flags.Flags;
+import io.github.alshain01.Flags.ModuleYML;
+import io.github.alshain01.Flags.Registrar;
+import io.github.alshain01.Flags.area.Area;
+
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.EntityType;
@@ -33,12 +39,6 @@ import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
-
-import alshain01.Flags.Flag;
-import alshain01.Flags.Flags;
-import alshain01.Flags.ModuleYML;
-import alshain01.Flags.Registrar;
-import alshain01.Flags.area.Area;
 
 /**
  * Flags - Creature Spawn Module that adds creature spawn flags to the plugin Flags.
