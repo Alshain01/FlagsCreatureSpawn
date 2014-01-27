@@ -23,8 +23,8 @@
  */
 package io.github.alshain01.FlagsCreatureSpawn;
 
-import io.github.alshain01.Flags.*;
-import io.github.alshain01.Flags.System;
+import io.github.alshain01.flags.*;
+import io.github.alshain01.flags.System;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.EntityType;
@@ -131,8 +131,7 @@ public class FlagsCreatureSpawn extends JavaPlugin {
 			// Always guard this, even when it really can't happen.
 			// (In this case, BREEDING can cause null)
 			if (flag != null) {
-				e.setCancelled(!System.getActive().getAreaAt(e.getLocation()).getValue(
-						flag, false));
+				e.setCancelled(!System.getActive().getAreaAt(e.getLocation()).getValue(flag, false));
 			}
 		}
 	}
