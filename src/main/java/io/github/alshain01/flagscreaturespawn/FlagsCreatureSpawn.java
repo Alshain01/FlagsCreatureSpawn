@@ -35,6 +35,10 @@ import org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
+
 /**
  * Flags Creature Spawn - Module that adds creature spawn flags to the plugin Flags.
  */
@@ -52,76 +56,83 @@ public class FlagsCreatureSpawn extends JavaPlugin {
 		}
 
 		// Connect to the data file and register the flags
-		Flags.getRegistrar().register(new ModuleYML(this, "flags.yml"), "CreatureSpawn");
+		Set<Flag> flags = Flags.getRegistrar().register(new ModuleYML(this, "flags.yml"), "CreatureSpawn");
+        Map<String, Flag> flagMap = new HashMap<String, Flag>();
+        for(Flag f : flags) {
+            flagMap.put(f.getName(), f);
+        }
 
 		// Load plug-in events and data
-		Bukkit.getServer().getPluginManager().registerEvents(new CreatureSpawnListener(), this);
+		this.getServer().getPluginManager().registerEvents(new CreatureSpawnListener(flagMap), this);
 	}
 	
 	/*
 	 * The event handler for the flags we created earlier
 	 */
 	private class CreatureSpawnListener implements Listener {
-		@EventHandler(ignoreCancelled = true)
+        final Map<String, Flag> flags;
+
+        private CreatureSpawnListener(Map<String, Flag> flags) {
+            this.flags = flags;
+        }
+
+        @EventHandler(ignoreCancelled = true)
 		private void onCreatureSpawn(CreatureSpawnEvent e) {
 			Flag flag = null;
-			final Registrar flags = Flags.getRegistrar();
 
 			switch (e.getSpawnReason()) {
 			case NATURAL:
-				flag = flags.getFlag("SpawnMob");
+				flag = flags.get("SpawnMob");
 				break;
 			case VILLAGE_INVASION:
-				flag = flags.getFlag("SpawnInvasion");
+				flag = flags.get("SpawnInvasion");
 				break;
 			case EGG:
-				flag = flags.getFlag("SpawnEgg");
+				flag = flags.get("SpawnEgg");
 				break;
 			case JOCKEY:
-				flag = flags.getFlag("SpawnJockey");
+				flag = flags.get("SpawnJockey");
 				break;
 			case LIGHTNING:
-				flag = flags.getFlag("SpawnLightning");
+				flag = flags.get("SpawnLightning");
 				break;
 			case VILLAGE_DEFENSE:
-				flag = flags.getFlag("SpawnGolem");
+				flag = flags.get("SpawnGolem");
 				break;
 			case CUSTOM:
-				flag = flags.getFlag("SpawnByPlugin");
+				flag = flags.get("SpawnByPlugin");
 				break;
 			case CHUNK_GEN:
-				flag = flags.getFlag("SpawnChunk");
+				flag = flags.get("SpawnChunk");
 				break;
 			case SPAWNER:
-				flag = flags.getFlag("Spawner");
+				flag = flags.get("Spawner");
 				break;
 			case SPAWNER_EGG:
-				flag = flags.getFlag("SpawnerEgg");
+				flag = flags.get("SpawnerEgg");
 				break;
 			case BUILD_IRONGOLEM:
-				flag = flags.getFlag("BuildGolem");
+				flag = flags.get("BuildGolem");
 				break;
 			case BUILD_SNOWMAN:
-				flag = flags.getFlag("BuildSnowman");
+				flag = flags.get("BuildSnowman");
 				break;
 			case BREEDING:
 				if (e.getEntityType() == EntityType.VILLAGER) {
-					flag = flags.getFlag("BreedVillager");
+					flag = flags.get("BreedVillager");
 				}
 				break;
 			default:
 				// Can't switch on API versions, will cause errors.
-				if (Flags.checkAPI("1.2.5")
-						&& e.getSpawnReason() == SpawnReason.SLIME_SPLIT) {
-					flag = flags.getFlag("SlimeSplit");
-				} else if (Flags.checkAPI("1.4.5")
-						&& e.getSpawnReason() == SpawnReason.BUILD_WITHER) {
-					flag = flags.getFlag("BuildWither");
-				} else if (Flags.checkAPI("1.6.2")
-						&& e.getSpawnReason() == SpawnReason.REINFORCEMENTS) {
-					flag = flags.getFlag("SpawnReinforcements");
+                SpawnReason reason = e.getSpawnReason();
+				if (Flags.checkAPI("1.2.5") && reason == SpawnReason.SLIME_SPLIT) {
+					flag = flags.get("SlimeSplit");
+				} else if (Flags.checkAPI("1.4.5") && reason == SpawnReason.BUILD_WITHER) {
+					flag = flags.get("BuildWither");
+				} else if (Flags.checkAPI("1.6.2") && reason == SpawnReason.REINFORCEMENTS) {
+					flag = flags.get("SpawnReinforcements");
 				} else {
-					flag = flags.getFlag("SpawnOther");
+					flag = flags.get("SpawnOther");
 				}
 			}
 
