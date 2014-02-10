@@ -36,9 +36,7 @@ import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 /**
- * Flags - Creature Spawn Module that adds creature spawn flags to the plugin Flags.
- *
- * @author Alshain01
+ * Flags Creature Spawn - Module that adds creature spawn flags to the plugin Flags.
  */
 public class FlagsCreatureSpawn extends JavaPlugin {
 	/**
@@ -57,8 +55,7 @@ public class FlagsCreatureSpawn extends JavaPlugin {
 		Flags.getRegistrar().register(new ModuleYML(this, "flags.yml"), "CreatureSpawn");
 
 		// Load plug-in events and data
-		Bukkit.getServer().getPluginManager()
-				.registerEvents(new CreatureSpawnListener(), this);
+		Bukkit.getServer().getPluginManager().registerEvents(new CreatureSpawnListener(), this);
 	}
 	
 	/*
