@@ -71,6 +71,7 @@ public class FlagsCreatureSpawn extends JavaPlugin {
 	 */
 	private class CreatureSpawnListener implements Listener {
         final Map<String, Flag> flags;
+        final System system = System.getActive();
 
         private CreatureSpawnListener(Map<String, Flag> flags) {
             this.flags = flags;
@@ -139,7 +140,7 @@ public class FlagsCreatureSpawn extends JavaPlugin {
 			// Always guard this, even when it really can't happen.
 			// (In this case, BREEDING can cause null)
 			if (flag != null) {
-				e.setCancelled(!System.getActive().getAreaAt(e.getLocation()).getValue(flag, false));
+				e.setCancelled(!system.getAreaAt(e.getLocation()).getValue(flag, false));
 			}
 		}
 	}
