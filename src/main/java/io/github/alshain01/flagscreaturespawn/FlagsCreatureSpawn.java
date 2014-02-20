@@ -106,6 +106,9 @@ public class FlagsCreatureSpawn extends JavaPlugin {
 			case CHUNK_GEN:
 				flag = flags.get("SpawnChunk");
 				break;
+            case SLIME_SPLIT:
+                flag = flags.get("SlimeSplit");
+                break;
 			case SPAWNER:
 				flag = flags.get("Spawner");
 				break;
@@ -118,6 +121,9 @@ public class FlagsCreatureSpawn extends JavaPlugin {
 			case BUILD_SNOWMAN:
 				flag = flags.get("BuildSnowman");
 				break;
+            case BUILD_WITHER:
+                flag = flags.get("BuildWither");
+                break;
 			case BREEDING:
 				if (e.getEntityType() == EntityType.VILLAGER) {
 					flag = flags.get("BreedVillager");
@@ -126,11 +132,7 @@ public class FlagsCreatureSpawn extends JavaPlugin {
 			default:
 				// Can't switch on API versions, will cause errors.
                 SpawnReason reason = e.getSpawnReason();
-				if (Flags.checkAPI("1.2.5") && reason == SpawnReason.SLIME_SPLIT) {
-					flag = flags.get("SlimeSplit");
-				} else if (Flags.checkAPI("1.4.5") && reason == SpawnReason.BUILD_WITHER) {
-					flag = flags.get("BuildWither");
-				} else if (Flags.checkAPI("1.6.2") && reason == SpawnReason.REINFORCEMENTS) {
+				if (Flags.checkAPI("1.6.2") && reason == SpawnReason.REINFORCEMENTS) {
 					flag = flags.get("SpawnReinforcements");
 				} else {
 					flag = flags.get("SpawnOther");
