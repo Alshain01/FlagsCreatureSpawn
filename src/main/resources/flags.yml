@@ -1,10 +1,10 @@
 Flag:
   SpawnByPlugin:
-    Description: Toggles mob spawning by 3rd party plugins.
+    Description: Toggles spawning by plugins.
   SpawnChunk:
     Description: Toggles spawns that occur due to chunk generation.
   SpawnEgg:
-    Description: Toggles mob spawning by thrown eggs.
+    Description: Toggles spawning by thrown eggs.
   SpawnGolem:
     Description: Toggles spawning of golems in villages.
   SpawnInvasion:
