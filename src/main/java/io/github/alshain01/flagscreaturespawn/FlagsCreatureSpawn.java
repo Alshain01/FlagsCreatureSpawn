@@ -23,8 +23,10 @@
  */
 package io.github.alshain01.flagscreaturespawn;
 
-import io.github.alshain01.flags.*;
-import io.github.alshain01.flags.System;
+import io.github.alshain01.flags.Flags;
+import io.github.alshain01.flags.Flag;
+import io.github.alshain01.flags.ModuleYML;
+import io.github.alshain01.flags.CuboidType;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.EntityType;
@@ -42,6 +44,7 @@ import java.util.Set;
 /**
  * Flags Creature Spawn - Module that adds creature spawn flags to the plugin Flags.
  */
+@SuppressWarnings("unused")
 public class FlagsCreatureSpawn extends JavaPlugin {
 	/**
 	 * Called when this module is enabled
@@ -71,7 +74,7 @@ public class FlagsCreatureSpawn extends JavaPlugin {
 	 */
 	private class CreatureSpawnListener implements Listener {
         final Map<String, Flag> flags;
-        final System system = System.getActive();
+        final CuboidType system = CuboidType.getActive();
 
         private CreatureSpawnListener(Map<String, Flag> flags) {
             this.flags = flags;
