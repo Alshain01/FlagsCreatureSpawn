@@ -1,34 +1,32 @@
-Flag:
-  SpawnByPlugin:
-    Description: Toggles spawning by plugins.
-  SpawnChunk:
-    Description: Toggles spawns that occur due to chunk generation.
-  SpawnEgg:
-    Description: Toggles spawning by thrown eggs.
-  SpawnGolem:
-    Description: Toggles spawning of golems in villages.
-  SpawnInvasion:
-    Description: Toggles village invasions.
-  SpawnJockey:
-    Description: Toggles spawning of jockeys.
-  SpawnLightning:
-    Description: Toggles mob spawning by lightning strike.
-  SpawnMob:
-    Description: Toggles mob spawning by natural means.
-  Spawner:
-    Description: Toggles mob Spawning by monster spawners.
-  SpawnerEgg:
-    Description: Toggles using creative mode monster eggs.
-  SpawnOther:
-    Description: Toggles spawns that occur for any reason not handled by another flag.
-  BuildGolem:
-    Description: Toggles ability to build Iron Golems.
-  BuildSnowman:
-    Description: Toggles ability to build Snow Golems.
-  BuildWither:
-    Description: Toggles ability to build the Wither.
-  SlimeSplit:
-    Description: Toggles ability for slime to split.
-  SpawnReinforcements:
-    Description: Toggles ability for mobs to call for reinforcements.
-    MinimumAPI: 1.6.2
+SpawnByPlugin:
+  Description: Toggles spawning by plugins.
+SpawnChunk:
+  Description: Toggles spawns that occur due to chunk generation.
+SpawnEgg:
+  Description: Toggles spawning by thrown eggs.
+SpawnGolem:
+  Description: Toggles spawning of golems in villages.
+SpawnInvasion:
+  Description: Toggles village invasions.
+SpawnJockey:
+  Description: Toggles spawning of jockeys.
+SpawnLightning:
+  Description: Toggles mob spawning by lightning strike.
+SpawnMob:
+  Description: Toggles mob spawning by natural means.
+Spawner:
+  Description: Toggles mob Spawning by monster spawners.
+SpawnerEgg:
+  Description: Toggles using creative mode monster eggs.
+SpawnOther:
+  Description: Toggles spawns that occur for any reason not handled by another flag.
+BuildGolem:
+  Description: Toggles ability to build Iron Golems.
+BuildSnowman:
+  Description: Toggles ability to build Snow Golems.
+BuildWither:
+  Description: Toggles ability to build the Wither.
+SlimeSplit:
+  Description: Toggles ability for slime to split.
+SpawnReinforcements:
+  Description: Toggles ability for mobs to call for reinforcements.

@@ -23,17 +23,15 @@
  */
 package io.github.alshain01.flagscreaturespawn;
 
-import io.github.alshain01.flags.Flags;
-import io.github.alshain01.flags.Flag;
-import io.github.alshain01.flags.ModuleYML;
-import io.github.alshain01.flags.CuboidType;
+import io.github.alshain01.flags.api.Flag;
+import io.github.alshain01.flags.api.FlagsAPI;
 
 import org.bukkit.Bukkit;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.EntityType;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.CreatureSpawnEvent;
-import org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -59,7 +57,8 @@ public class FlagsCreatureSpawn extends JavaPlugin {
 		}
 
 		// Connect to the data file and register the flags
-		Set<Flag> flags = Flags.getRegistrar().register(new ModuleYML(this, "flags.yml"), "CreatureSpawn");
+        YamlConfiguration flagConfig = YamlConfiguration.loadConfiguration(getResource("flags.yml"));
+        Set<Flag> flags = FlagsAPI.getRegistrar().register(flagConfig, "CreatureSpawn");
         Map<String, Flag> flagMap = new HashMap<String, Flag>();
         for(Flag f : flags) {
             flagMap.put(f.getName(), f);
@@ -74,7 +73,6 @@ public class FlagsCreatureSpawn extends JavaPlugin {
 	 */
 	private class CreatureSpawnListener implements Listener {
         final Map<String, Flag> flags;
-        final CuboidType system = CuboidType.getActive();
 
         private CreatureSpawnListener(Map<String, Flag> flags) {
             this.flags = flags;
@@ -86,8 +84,10 @@ public class FlagsCreatureSpawn extends JavaPlugin {
 
 			switch (e.getSpawnReason()) {
 			case NATURAL:
-				flag = flags.get("SpawnMob");
-				break;
+                if(e.getEntityType() != EntityType.VILLAGER) { // Stops cure villager spawn bug
+                    flag = flags.get("SpawnMob");
+                    break;
+                }
 			case VILLAGE_INVASION:
 				flag = flags.get("SpawnInvasion");
 				break;
@@ -132,20 +132,17 @@ public class FlagsCreatureSpawn extends JavaPlugin {
 					flag = flags.get("BreedVillager");
 				}
 				break;
+            case REINFORCEMENTS:
+                flag = flags.get("SpawnReinforcements");
+                break;
 			default:
-				// Can't switch on API versions, will cause errors.
-                SpawnReason reason = e.getSpawnReason();
-				if (Flags.checkAPI("1.6.2") && reason == SpawnReason.REINFORCEMENTS) {
-					flag = flags.get("SpawnReinforcements");
-				} else {
-					flag = flags.get("SpawnOther");
-				}
+                flag = flags.get("SpawnOther");
 			}
 
 			// Always guard this, even when it really can't happen.
 			// (In this case, BREEDING can cause null)
 			if (flag != null) {
-				e.setCancelled(!system.getAreaAt(e.getLocation()).getValue(flag, false));
+				e.setCancelled(!FlagsAPI.getAreaAt(e.getLocation()).getValue(flag, false));
 			}
 		}
 	}
