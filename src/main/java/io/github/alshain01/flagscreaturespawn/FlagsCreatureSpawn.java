@@ -143,7 +143,7 @@ public class FlagsCreatureSpawn extends JavaPlugin {
 			// Always guard this, even when it really can't happen.
 			// (In this case, BREEDING can cause null)
 			if (flag != null) {
-				e.setCancelled(!FlagsAPI.getAreaAt(e.getLocation()).getValue(flag, false));
+				e.setCancelled(!FlagsAPI.getAreaAt(e.getLocation()).getState(flag, false));
 			}
 		}
 	}
