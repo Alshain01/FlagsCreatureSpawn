@@ -35,6 +35,7 @@ import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -59,7 +60,7 @@ public class FlagsCreatureSpawn extends JavaPlugin {
 
 		// Connect to the data file and register the flags
         YamlConfiguration flagConfig = YamlConfiguration.loadConfiguration(getResource("flags.yml"));
-        Set<Flag> flags = FlagsAPI.getRegistrar().register(flagConfig, "CreatureSpawn");
+        Collection<Flag> flags = FlagsAPI.getRegistrar().registerFlag(flagConfig, "CreatureSpawn");
         Map<String, Flag> flagMap = new HashMap<String, Flag>();
         for(Flag f : flags) {
             flagMap.put(f.getName(), f);
