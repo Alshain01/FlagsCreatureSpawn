@@ -38,7 +38,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 
 /**
  * Flags Creature Spawn - Module that adds creature spawn flags to the plugin Flags.
