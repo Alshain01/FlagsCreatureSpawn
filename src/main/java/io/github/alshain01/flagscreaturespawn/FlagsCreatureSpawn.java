@@ -86,10 +86,8 @@ public class FlagsCreatureSpawn extends JavaPlugin {
 
 			switch (e.getSpawnReason()) {
 			case NATURAL:
-                if(e.getEntityType() != EntityType.VILLAGER) { // Stops cure villager spawn bug
-                    flag = flags.get("SpawnMob");
-                    break;
-                }
+                flag = flags.get("SpawnMob");
+                break;
 			case VILLAGE_INVASION:
 				flag = flags.get("SpawnInvasion");
 				break;
@@ -134,6 +132,9 @@ public class FlagsCreatureSpawn extends JavaPlugin {
 					flag = flags.get("BreedVillager");
 				}
 				break;
+            case CURED:
+                flag = flags.get("SpawnCuredVillager");
+                break;
             case REINFORCEMENTS:
                 flag = flags.get("SpawnReinforcements");
                 break;

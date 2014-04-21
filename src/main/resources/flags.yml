@@ -2,6 +2,8 @@ SpawnByPlugin:
   Description: Toggles spawning by plugins.
 SpawnChunk:
   Description: Toggles spawns that occur due to chunk generation.
+SpawnCuredVillager:
+  Description: Toggles spawns from curing a zombie villager.
 SpawnEgg:
   Description: Toggles spawning by thrown eggs.
 SpawnGolem:
